@@ -1,13 +1,17 @@
-{% extends 'users/detail.html' %} 
-
+{% extends 'users/detail.html' %}
 {% block user_details %}
-    {% for msg in likes %}
-
-        {{ msg.user.username }} {{ msg.timestamp.strftime('%d %B %Y') }}
-        {{ msg.text }}
-
-        {% if msg.user.id == g.user.id %}
-
-        {% endif %}
-    {% endfor %}
+<div class="col-sm-9">
+  <div class="row">
+    <div class="col-12">
+      <h2>Liked Messages</h2>
+      <ul>
+        {% for like in likes %}
+          <li>
+            <a href="/messages/{{ like.id }}" class="text-decoration-none text-dark">{{ like.text }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

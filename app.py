@@ -330,7 +330,7 @@ def like_message(message_id):
         g.user.likes.append(message)
 
     db.session.commit()
-    return redirect('/home')
+    return redirect('/')
 
 
 
@@ -342,8 +342,8 @@ def liked_messages(user_id):
         flash("Unauthorized.", 'warning')
         return redirect('/') 
 
-    
     return render_template('/users/likes.html', user=user, likes=user.likes)
+
 
 
 ##############################################################################
