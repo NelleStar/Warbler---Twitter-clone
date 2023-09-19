@@ -210,6 +210,15 @@ nav + .container {
   position: relative;
   left: 50%;
   right: 50%;
+  overflow: hidden;
+}
+
+.full-width img{
+  width: 100%; /* Make the image span the full width of its container */
+  position: absolute; /* Position it absolutely within the container */
+  top: 0; /* Align the top of the image with the top of the container */
+  left: 0; /* Align the left of the image with the left of the container */
+  object-fit: cover; /* Scale the image to cover the container */
 }
 
 .row.full-width {

@@ -1,0 +1,13 @@
+{% extends 'users/detail.html' %} 
+
+{% block user_details %}
+    {% for msg in likes %}
+
+        {{ msg.user.username }} {{ msg.timestamp.strftime('%d %B %Y') }}
+        {{ msg.text }}
+
+        {% if msg.user.id == g.user.id %}
+
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -47,6 +47,11 @@ class Likes(db.Model):
         db.ForeignKey('messages.id', ondelete='cascade'),
         unique=True
     )
+    
+    timestamp = db.Column(
+        db.DateTime,
+        default=datetime.utcnow
+    )
 
 
 class User(db.Model):
@@ -107,7 +112,8 @@ class User(db.Model):
         "User",
         secondary="follows",
         primaryjoin=(Follows.user_following_id == id),
-        secondaryjoin=(Follows.user_being_followed_id == id)
+        secondaryjoin=(Follows.user_being_followed_id == id),
+        overlaps="followers" 
     )
 
     likes = db.relationship(
@@ -197,7 +203,11 @@ class Message(db.Model):
         nullable=False,
     )
 
-    user = db.relationship('User')
+    user = db.relationship(
+        'User',
+        backref="user_messages",
+        overlaps="messages",
+    )
 
 
 def connect_db(app):
